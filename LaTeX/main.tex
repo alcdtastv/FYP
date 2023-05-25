@@ -1,0 +1,75 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[top=2cm,bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\setlength{\parindent}{0pt}
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{subfiles}
+\usepackage[numbers]{natbib}
+
+%figures and subfigures
+\usepackage{caption}
+\usepackage{subcaption}
+
+
+\usepackage[toc,page]{appendix} %allows fancyhdr and notoccite together
+\usepackage{notoccite} %references in captions numbering
+
+\usepackage{fancyhdr}
+\fancypagestyle{main}{%
+  \fancyhf{}
+  \fancyhead[L]{\nouppercase{\leftmark}}%
+  \fancyhead[R]{Page \thepage}%
+  \renewcommand{\headrulewidth}{0.5pt}%
+  \setlength{\headheight}{14pt}
+  \setlength{\headsep}{15pt}
+  \addtolength{\topmargin}{15pt}
+}
+
+
+\title{FYP}
+\author{Luca Mazzotta}
+\date{May 2023}
+
+
+
+\begin{document}
+
+\pagestyle{plain}
+\pagenumbering{roman}
+
+\input{titlepage}
+
+\newpage
+\tableofcontents
+
+\newpage
+\addcontentsline{toc}{section}{List of Figures}
+\listoffigures
+
+\newpage
+\addcontentsline{toc}{section}{List of Tables}
+\listoftables
+
+\newpage
+\pagestyle{main}
+\pagenumbering{arabic}
+
+\input{1. Introduction}
+
+\input{2. Background}
+
+
+
+\newpage
+{\small
+\bibliographystyle{unsrtnat}
+\bibliography{export}
+}
+
+\end{document}
