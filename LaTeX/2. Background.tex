@@ -30,5 +30,14 @@ As it is possible to see from \autoref{fig:regimes}, flows can be divided into t
 
 It is important to note that while a flow may be globally continuous, certain local regions may exhibit signs of rarefied flow. An illustrative example of this phenomenon is the re-entry path of the space shuttle. While the global Knudsen number, calculated based on the length of the vehicle, may fall within the continuum regime, the Knudsen number associated with the flow around one of the rivets on its wing could differ significantly, potentially resulting in a different flow regime altogether.
 
+ADD HATHORAERO2
 
+\subsection{Rarefied flow modelling}
+As mentioned previously, Navier-Stokes equations cease to be valid in the rarefied flow regime. Different methods thus need to be employed for its analytical description.
 
+Free molecular flow is modelled through the Boltzmann equation, presented in \autoref{eq:boltzmann} in its multi species form. In \autoref{eq:boltzmann}, $\mathbf{F}(r, t)$ is the force field acting on the fluid particles
+
+\begin{equation}
+    \frac{\partial f_i}{\partial t}+\frac{\mathbf{p}_i}{m_i} \cdot \nabla f_i+\mathbf{F} \cdot \frac{\partial f_i}{\partial \mathbf{p}_i}=\left(\frac{\partial f_i}{\partial t}\right)_{\text {coll }}
+    \label{eq:boltzmann}
+\end{equation}
