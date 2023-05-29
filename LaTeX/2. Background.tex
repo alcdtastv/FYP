@@ -31,7 +31,7 @@ It is important to note that while a flow may be globally continuous, certain lo
 
 ADD HATHORAERO2
 
-\subsection{Rarefied flow modelling}
+\subsection{Rarefied flow mathematical modelling}
 As mentioned previously, Navier-Stokes equations cease to be valid in the rarefied flow regime. Different methods thus need to be employed for its analytical description.
 
 Free molecular flow is modelled through the Boltzmann equation, presented in \autoref{eq:boltzmann}. This equation, developed by Ludwig Boltzmann in 1872, describes the statistical behaviour of a thermodynamic system not in a state of equilibrium. The description that it gives is in terms of microscopic quantities, such as momentum $\mathbf{p}$ and mass $m$ of the particles, and is based on a particle distribution function $f (\mathbf{x}, \mathbf{c},t)$, which expresses the probability of finding a molecule in a volume $d\mathbf{x}$ with velocity between $\mathbf{c}$ and $\mathbf{c} + d \mathbf{c}$ \cite{burnett}.
@@ -78,5 +78,10 @@ More details about the derivations can be seen in the flowchart in \autoref{fig:
     \label{fig:flowchart}
 \end{figure}
 
-It has been noted by the author that these equations, despite providing a correct analytical description of rarefied flows, are seldom to never used in literature for carrying out actual flow analyses. This is due to the difficulty of correctly computing accurate boundary conditions and their linear instability to short wave disturbances \cite{comprarefied}.
+It has been noted by the author that these equations, despite providing a correct analytical description of rarefied flows, are seldom to never used in literature for carrying out actual flow simulations. This is probably due to the existence of analytically simpler methods (which will be discussed in the following section), the difficulty of correctly computing accurate boundary conditions for Burnett equations and their linear instability to short wave disturbances \cite{comprarefied}.
+
+\subsection{Rarefied flow simulation techniques}
+Rarefied flow simulations are mainly divided into two categories: regular CFD codes with correction factors for velcoity slip and temperature jump, and Direct Simulation Monte Carlo solvers.
+
+
 
