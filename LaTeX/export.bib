@@ -224,3 +224,114 @@ booktitle = {The DSMC method},
     url = {https://docs.lib.purdue.edu/open_access_dissertations/586},
 	title  =   {Assessment of high-fidelity collision models in the direct simulation Monte Carlo method}
 }
+
+@misc{purdue,
+	author={Aaron Pikus},
+	year={2019},
+	month={Mar, 22},
+	title={DSMC/SPARTA Lecture 1 by Aaron Pikus, Purdue University}
+}
+
+@misc{spartadoc,
+	year = 	 {2023},
+	month = 	 {-04-13},
+	title = 	 {SPARTA Users Manual}
+}
+
+@article{sparta,
+	author={S. J. Plimpton and S. G. Moore and A. Borner and A. K. Stagg and T. P. Koehler and J. R. Torczynski and M. A. Gallis},
+	year={2019},
+	month={Aug},
+	title={Direct simulation Monte Carlo on petaflop supercomputers and beyond},
+	journal={Physics of fluids (1994)},
+	volume={31},
+	number={8},
+	pages={86101},
+	abstract={The gold-standard definition of the Direct Simulation Monte Carlo (DSMC) method is given in the 1994 book by Bird [Molecular Gas Dynamics and the Direct Simulation of Gas Flows (Clarendon Press, Oxford, UK, 1994)], which refined his pioneering earlier papers in which he first formulated the method. In the intervening 25 years, DSMC has become the method of choice for modeling rarefied gas dynamics in a variety of scenarios. The chief barrier to applying DSMC to more dense or even continuum flows is its computational expense compared to continuum computational fluid dynamics methods. The dramatic (nearly billion-fold) increase in speed of the largest supercomputers over the last 30 years has thus been a key enabling factor in using DSMC to model a richer variety of flows, due to the method’s inherent parallelism. We have developed the open-source SPARTA DSMC code with the goal of running DSMC efficiently on the largest machines, both current and future. It is largely an implementation of Bird’s 1994 formulation. Here, we describe algorithms used in SPARTA to enable DSMC to operate in parallel at the scale of many billions of particles or grid cells, or with billions of surface elements. We give a few examples of the kinds of fundamental physics questions and engineering applications that DSMC can address at these scales.},
+	isbn={1070-6631},
+	url={http://dx.doi.org/10.1063/1.5108534},
+	doi={10.1063/1.5108534}
+}
+@article{openfoam,
+	author={H. G. Weller and G. Tabor and H. Jasak and C. Fureby},
+	year={1998},
+	month={Nov 1,},
+	title={A tensorial approach to computational continuum mechanics using object-oriented techniques},
+	journal={Computers in physics},
+	volume={12},
+	number={6},
+	pages={620},
+	isbn={0894-1866},
+	doi={10.1063/1.168744}
+}
+@article{dsmcfoam+,
+	author={C. White and M. K. Borg and T. J. Scanlon and S. M. Longshaw and B. John and D. R. Emerson and J. M. Reese},
+	year={2018},
+	month={Mar 1,},
+	title={dsmcFoam+: An OpenFOAM based direct simulation Monte Carlo solver},
+	journal={Computer physics communications},
+	volume={224},
+	pages={22-43},
+	abstract={dsmcFoam+ is a direct simulation Monte Carlo (DSMC) solver for rarefied gas dynamics, implemented within the OpenFOAM software framework, and parallelised with MPI. It is open-source and released under the GNU General Public License in a publicly available software repository that includes detailed documentation and tutorial DSMC gas flow cases. This release of the code includes many features not found in standard dsmcFoam, such as molecular vibrational and electronic energy modes, chemical reactions, and subsonic pressure boundary conditions. Since dsmcFoam+ is designed entirely within OpenFOAM’s C++ object-oriented framework, it benefits from a number of key features: the code emphasises extensibility and flexibility so it is aimed first and foremost as a research tool for DSMC, allowing new models and test cases to be developed and tested rapidly. All DSMC cases are as straightforward as setting up any standard OpenFOAM case, as dsmcFoam+ relies upon the standard OpenFOAM dictionary based directory structure. This ensures that useful pre- and post-processing capabilities provided by OpenFOAM remain available even though the fully Lagrangian nature of a DSMC simulation is not typical of most OpenFOAM applications. We show that dsmcFoam+ compares well to other well-known DSMC codes and to analytical solutions in terms of benchmark results.
+Program title: dsmcFoam+
+Program Files doi:http://dx.doi.org/10.17632/7b4xkpx43b.1
+Licensing provisions: GNU General Public License 3 (GPL)
+Programming language: C++
+Nature of problem: dsmcFoam+ has been developed to help investigate rarefied gas flow problems using the direct simulation Monte Carlo (DSMC) method. It provides an easily extended, parallelised, DSMC environment.
+Solution method: dsmcFoam+ implements an explicit time-stepping solver with stochastic molecular collisions appropriate for studying rarefied gas flow problems.
+References: All appropriate methodological references are contained in the section entitled References.},
+	isbn={0010-4655},
+	url={https://dx.doi.org/10.1016/j.cpc.2017.09.030},
+	doi={10.1016/j.cpc.2017.09.030}
+}
+
+@article{rees,
+	author={Thomas W. Rees and Paul J. K. Bruce and Tom B. Fisher and Mark K. Quinn and Jim A. Merrifield},
+	year={2021},
+	month={Jun},
+	title={Numerical and experimental studies of the hypersonic flow around a cube at incidence},
+	journal={Acta astronautica},
+	volume={183},
+	pages={75-88},
+	abstract={In order to improve predictions of the on-ground casualty risk associated with the uncontrolled atmospheric re-entry of satellites from Low Earth Orbit, there is significant research interest in the development of engineering models of hypersonic heating rates to faceted shapes. A key part of developing such models is generating accurate datasets of the heat fluxes experienced by faceted shapes at various orientations in hypersonic flows. In this work, we use wind tunnel experiments and CFD simulations to study the hypersonic flow around a cuboid geometry at 5° incidence in a Mach 5 flow at Reynolds numbers of 79.5×103, 109×103 and 148×103. The wind tunnel data are obtained in the University of Manchester's High SuperSonic Tunnel and consist of schlieren images and temperature histories collected using infrared thermography. These temperature histories are used to calculate experimental heat fluxes by solving a three-dimensional inverse heat conduction problem. CFD simulations around the same geometry at equivalent free-stream conditions are calculated with the DLR-TAU code. The experimental and CFD results show good agreement both in terms of heat fluxes as well as flow structure. Notable flow structures include wedge-shaped regions of high heat flux which emanate from the windward corners of the cube. Analysis of numerical Q-criterion contours show that these high heat flux regions are caused by vortex structures generated by the expansion at the cube corner. Analysis of the numerical skin friction coefficient shows that even at incidence there is no breakaway separation from the expansion edges of the cube and the flow remains attached throughout. We show that although there is little change in the average heat flux experienced by a cube at 5° incidence to the free-stream compared to one at 0° incidence, there are significant changes in the heat flux contours over the cubes at these two incidences. Finally, we calculate a number of heating shape factors which can easily be implemented in satellite re-entry and demise prediction analysis tools.
+•Experimental measurements of the heat flux to a cube generally agree well with CFD.•However, agreement is poor at sharp corners and edges.•The addition of small angles of incidence does not significantly affect average heating rates.•Expansions around 3D corners can generate vortex structures which significantly increase heating.},
+	isbn={0094-5765},
+	url={https://dx.doi.org/10.1016/j.actaastro.2021.02.033},
+	doi={10.1016/j.actaastro.2021.02.033}
+}
+@article{fnum1,
+	author={R. Maltsev},
+	year={2011},
+	month={Jan 1,},
+	title={On the Selection of the Number of Model Particles in DSMC Computations},
+	journal={27th International Symposium on Rarefied Gas Dynamics 2010. Pts. 1 \& 2},
+	volume={1333},
+	number={1},
+	abstract={The discretization errors of majorant frequency scheme (MFS) based Direct simulation Monte Carlo (DSMC) are analyzed numerically and compared to known results for no-time-counter (NTC) scheme DSMC on the example of the Fourier problem. Independence of error from an average number of particles in a cell is confirmed for MFS. Convergence on time step and cell size in MFS is verified to be second order as in NTC. New criterion for the number of model particles is proposed, invariant on local density and, in simplest case, coming to product of the mean number of particles in a cell and the number of cells along the local mean free path. First order convergence on the criterion value is demonstrated for both 1D and 2D grids.},
+	url={https://search.proquest.com/docview/1448713170},
+	doi={10.1063/1.3562663}
+}
+@article{fnum2,
+	author={Zhi-Xin Sun and Zhen Tang and Ya-Ling He and Wen-Quan Tao},
+	year={2011},
+	month={Nov 1,},
+	title={Proper cell dimension and number of particles per cell for DSMC},
+	journal={Computers \& fluids},
+	volume={50},
+	number={1},
+	pages={1-9},
+	abstract={The Direct Simulation Monte Carlo (DSMC) method models fluid flows using simulation particles which represent a large number of real molecules in a probabilistic simulation to solve the Boltzmann equation. Different opinions still exist on some basic understandings of the controlling factors of DSMC method, such as the proper grid dimension and the proper number of particles in a cell. In this contribution, DSMC simulation of Poiseuille flow was carried out to evaluate the dependence of simulation results on cell dimension and number of particles per cell. In the simulation process a self-adaptive block-structured grid system was employed to guarantee that the number of particles per cell is constant. The simulation covers both 2D and 3D, slip flow regime and transition flow regime, and for each regime, covers both high pressure and low pressure cases. Our simulation results indicate that the number of particles per cell and scaling factor have little influence on simulation result for both slip flow and transition flow when the number of particles per cell is greater than 5, but the dimension of cell influences the accuracy of results significantly. The error caused by cell dimension decreases with the decrease of cell dimension. It is concluded that in the DSMC method it is necessary to ensure that the cell is less than 1/2 of molecular mean free path.},
+	isbn={0045-7930},
+	url={https://dx.doi.org/10.1016/j.compfluid.2011.04.013},
+	doi={10.1016/j.compfluid.2011.04.013}
+}
+
+@techreport{accomod,
+	author={Iain D. Boyd},
+	year={2009},
+	month={Sep},
+	title={Direct Simulation Monte Carlo for Atmospheric Entry. 1. Theoretical Basis and Physical Models},
+	abstract={The direct simulation Monte Carlo method (DSMC) has evolved over 40 years into a powerful numerical technique for the computation of complex, nonequilibrium gas flows. In this context, nonequilibrium means that the velocity distribution function is not in an equilibrium form due to a low number of intermolecular collisions within a fluid element. In atmospheric entry, nonequilibrium conditions occur at high altitude and in regions of flow fields with small length scales. In this first article of two parts, the theoretical basis of the DSMC technique is discussed. In addition, the methods used in DSMC are described for simulation of high temperature, real gas effects and gas-surface interactions. The current status of the various models is reviewed and areas where further work is required are identified.
+See also ADA562449. RTO-EN-AVT-162, Non-Equilibrium Gas Dynamics - From Physical Models to Hypersonic Flights (Dynamique des gaz non- equilibres - Des modeles physiques jusqu&#39;au vol hypersonique)., The original document contains color images.},
+	url={https://apps.dtic.mil/sti/citations/ADA568174}
+}
