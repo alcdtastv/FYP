@@ -335,3 +335,278 @@ References: All appropriate methodological references are contained in the secti
 See also ADA562449. RTO-EN-AVT-162, Non-Equilibrium Gas Dynamics - From Physical Models to Hypersonic Flights (Dynamique des gaz non- equilibres - Des modeles physiques jusqu&#39;au vol hypersonique)., The original document contains color images.},
 	url={https://apps.dtic.mil/sti/citations/ADA568174}
 }
+
+@article{Le,
+title = {Rarefied gas flow simulations of NACA 0012 airfoil and sharp 25-55-deg biconic subject to high order nonequilibrium boundary conditions in CFD},
+journal = {Aerospace Science and Technology},
+volume = {41},
+pages = {274-288},
+year = {2015},
+issn = {1270-9638},
+doi = {https://doi.org/10.1016/j.ast.2014.12.019},
+url = {https://www.sciencedirect.com/science/article/pii/S1270963814002727},
+author = {Nam T.P. Le and Ahmad Shoja-Sani and Ehsan Roohi},
+keywords = {Second order slip/jump boundary conditions, DSMC, NACA 0012 airfoil, Biconic geometry, OpenFOAM},
+
+}
+
+@article{unisalento,
+title = {Modeling viscous effects on boundary layer of rarefied gas flows inside micronozzles in the slip regime condition},
+journal = {Energy Procedia},
+volume = {148},
+pages = {838-845},
+year = {2018},
+note = {ATI 2018 - 73rd Conference of the Italian Thermal Machines Engineering Association},
+issn = {1876-6102},
+doi = {https://doi.org/10.1016/j.egypro.2018.08.113},
+url = {https://www.sciencedirect.com/science/article/pii/S1876610218304077},
+author = {Maria Grazia De Giorgi and Donato Fontanarosa and Antonio Ficarella},
+keywords = {micro-power systems, planar micronozzle, viscous effects, boundary layer, gas rarefaction, OpenFOAM},
+abstract = {The present work provided a numerical investigation of the supersonic flow of rarefied gas into a planar micronozzle characterized by small depth and long divergent section. 2D and 3D computational fluid dynamics (CFD) computations were performed using the continuum Navier-Stokes equations in combination with partial slip conditions at walls, based on a the establishment of the slip regime related to a Knudsen number ranging between 1 x 10-3 and 1 x 10-1. Different partial slip conditions were considered, i.e. the ideal case of pure slip conditions and the full viscous case with Maxwellian slip conditions on sidewalls and planar walls, as well as the case of Maxwellian slip just on sidewalls. The Maxwell slip model was set with a tangential accommodation coefficient equal (TMAC) to 0.8. Comparisons were based on the estimation of the global performance of the micronozzle in terms of thrust force, specific impulse, discharge coefficient and Isp-efficiency. It resulted that when the nozzle depth was neglected, 3D simulations led to the same solution obtained by means of 2D computations inside the micronozzle. The boundary layer thicknesses experienced a linear growth on the sidewalls, and the viscous losses produced a reduction of the performance of about the 95\%. Significant differences were found in the prediction of the jet plume, which took the typical bell-shape form in cases involving 2D computations, yet 3D simulations estimated a plume characterized by the succession of oblique shock waves and expansion fan waves. Instead, when the nozzle depth was considered, 3D simulations underlined a completely different behavior of the flow because of the establishment of the nozzle blockage and a viscous heating. The performance suffered an intense degradation of about the 47\%, and the analysis of the jet plume highlighted the formation of the Mach disk followed by the typical diamond-shaped subsonic recirculation region.}
+}
+
+
+@Article{bhagatmicro,
+AUTHOR = {Bhagat, Apurva and Gijare, Harshal and Dongari, Nishanth},
+TITLE = {Modeling of Knudsen Layer Effects in the Micro-Scale Backward-Facing Step in the Slip Flow Regime},
+JOURNAL = {Micromachines},
+VOLUME = {10},
+YEAR = {2019},
+NUMBER = {2},
+ARTICLE-NUMBER = {118},
+URL = {https://www.mdpi.com/2072-666X/10/2/118},
+PubMedID = {30759853},
+ISSN = {2072-666X},
+ABSTRACT = {The effect of the Knudsen layer in the thermal micro-scale gas flows has been investigated. The effective mean free path model has been implemented in the open source computational fluid dynamics (CFD) code, to extend its applicability up to slip and early transition flow regime. The conventional Navier-Stokes constitutive relations and the first-order non-equilibrium boundary conditions are modified based on the effective mean free path, which depends on the distance from the solid surface. The predictive capability of the standard &lsquo;Maxwell velocity slip&mdash;Smoluchwoski temperature jump&rsquo; and hybrid boundary conditions &lsquo;Langmuir Maxwell velocity slip&mdash;Langmuir Smoluchwoski temperature jump&rsquo; in conjunction with the Knudsen layer formulation has been evaluated in the present work. Simulations are carried out over a nano-/micro-scale backward facing step geometry in which flow experiences adverse pressure gradient, separation and re-attachment. Results are validated against the direct simulation Monte Carlo (DSMC) data, and have shown significant improvement over the existing CFD solvers. Non-equilibrium effects on the velocity and temperature of gas on the surface of the backward facing step channel are studied by varying the flow Knudsen number, inlet flow temperature, and wall temperature. Results show that the modified solver with hybrid Langmuir based boundary conditions gives the best predictions when the Knudsen layer is incorporated, and the standard Maxwell-Smoluchowski can accurately capture momentum and the thermal Knudsen layer when the temperature of the wall is higher than the fluid flow.},
+DOI = {10.3390/mi10020118}
+}
+
+@article{bhagatmacro,
+abstract = {AbstractA numerical investigation of Knudsen layer effects in high-speed flows in a rarefied flow regime has been carried out. The conventional compressible flow computational fluid dynamics (CFD) solver is reformed based on the effective mean free path model to augment the validity of the Navier-Stokes-Fourier equations in the slip-transition flow regime. The mean free path is expressed as a function of the distance from the surface and local flow gradients, and has been used to modify linear constitutive relations, as well as slip and jump boundary conditions, to incorporate Knudsen layer correction. The improved solver has been validated against direct simulation Monte Carlo (DSMC) data of benchmark test cases of hypersonic flow (Mach number=6.1 and 12.7) over a flat plate in the slip-flow regime (Knudsen number=0.004), and Mach 10 flow over a circular cylinder in the transition flow regime (Knudsen number=0.25). The results show that the accuracy of the conventional CFD solver has been significantly improved due to the implementation of the Knudsen layer approach in the near-wall region and the bulk-flow region. Crucial nonlinear trends are captured in the nonequilibrium regions of high-speed flows, such as shock waves and the Knudsen layer. The location of an oblique shock around the flat plate is accurately captured and overall, the Knudsen layer incorporation has exhibited good agreement with the DSMC with deviations within 4\% in the upstream region of the cylinder.},
+issn = {0893-1321},
+journal = {Journal of aerospace engineering},
+keywords = {Boundary conditions ; Circular cylinders ; Compressible flow ; Computational fluid dynamics ; Computer simulation ; Constitutive relationships ; Flat plates ; Fourier's equation ; Gas flow ; High speed ; Hypersonic flow ; Local flow ; Mach number ; Mathematical models ; Mean free path ; Monte Carlo method ; Shock waves ; Simulation ; Slip flow ; Technical Papers ; Transition flow},
+language = {eng},
+number = {6},
+publisher = {American Society of Civil Engineers},
+title = {Implementation of Knudsen Layer Phenomena in Rarefied High-Speed Gas Flows},
+volume = {32},
+year = {2019},
+author = {Bhagat, Apurva and Gijare, Harshal and Dongari, Nishanth},
+address = {New York},
+copyright = {2019 American Society of Civil Engineers},
+}
+@article{guo,
+title = {Flowfield structure characteristics of the hypersonic flow over a cavity: From the continuum to the transition flow regimes},
+journal = {Acta Astronautica},
+volume = {161},
+pages = {87-100},
+year = {2019},
+issn = {0094-5765},
+doi = {https://doi.org/10.1016/j.actaastro.2019.05.023},
+url = {https://www.sciencedirect.com/science/article/pii/S0094576519306356},
+author = {Guangming Guo and Qin Luo},
+keywords = {Flow regime, Open cavity, Closed cavity, DSMC, Reentry phase},
+abstract = {The cavity configurations produced by discontinuities at thermal protection system coated at surface of reentry space vehicles can lead to separation, attachment, and even transition of gas flows around the vehicle's surface, which can bring serious aerodynamic heating during the space vehicles reentering the Earth's atmosphere. In this paper, the continuum, slip, and transition flow regimes are chosen to represent reentry atmosphere environment and then a numerical investigation of hypersonic gas flows over a family of cavities is performed by using the direct simulation Monte Carlo method to reveal flow structures in the cavity flowfield under different length-to-depth ratios and freestream incoming Mach numbers. In particular, when the freestream varies from the continuum to the transition flow regimes, the minimal length-to-depth ratios required for cavity flow becoming the closed type are 8, 6, and 5, respectively. The effect of the freestream incoming Mach number on the cavity flow characteristics is getting weaker when the freestream varies from the continuum to the transition flow regime. The two significant findings are that the cavity flow characteristics under hypersonic conditions are primarily determined by cavity geometry rather than freestream incoming Mach number and secondly, effect of the freestream incoming Mach number on cavity flow type is very slight if the freestream is in the transition flow regime.}
+}
+
+@article{nabapurecav, 
+title={Investigation of rarefied flow over an open cavity using direct simulation Monte Carlo},
+volume={127}, DOI={10.1017/aer.2022.89},
+number={1312},
+journal={The Aeronautical Journal},
+publisher={Cambridge University Press},
+author={Nabapure, D. and Singh, A. and Kalluri, R.C.M.},
+year={2023},
+pages={1009-1036}}
+
+@article{jinrounding,
+title = {Effects of corner rounding on aerothermodynamic properties in rarefied hypersonic flows over an open cavity},
+journal = {Aerospace Science and Technology},
+volume = {110},
+pages = {106498},
+year = {2021},
+issn = {1270-9638},
+doi = {https://doi.org/10.1016/j.ast.2021.106498},
+url = {https://www.sciencedirect.com/science/article/pii/S1270963821000109},
+author = {Xuhong Jin and Bing Wang and Xiaoli Cheng and Qiang Wang and Fei Huang},
+keywords = {Cavity, DSMC, Rarefied flow, Rounded corner, Baroclinic pressure gradient},
+abstract = {A direct simulation Monte Carlo (DSMC) method is utilized to numerically investigate rarefied hypersonic flows over a group of two-dimensional rectangular cavities with rounded separation/reattachment corner. The effects of the rounded separation/reattachment corner on flow characteristics are discussed. The sensitivities of aerodynamic surface quantities are hence assessed comprehensively. Flows over the cavity configurations specified in the study hold the “open-cavity” characteristics and do not show any unsteadiness. The rounded separation corner does not significantly alter the flow patterns, while the rounded reattachment corner has a remarkable effect. Rounding the separation and reattachment corners can weaken the baroclinic effect in the separation and reattachment regions, respectively. For the rounded separation corner, it is easier for external gas molecules to enter the cavity and hence promote the momentum and energy exchanges with gas molecules inside the cavity. The fluid density inside the cavity, peak density at the reattachment point, pressure on and heat fluxes to the cavity floor are augmented, compared to those in the rectangular cavity case. However, the rounded reattachment corner may enhance the escape of gas molecules from the cavity and weaken the exchanges of momentum and energy. This leads to a significant decrease in the gas density inside the cavity, peak gas density at the reattachment point, pressure on and heat fluxes to the cavity floor. It is concluded that the approach of rounding the reattachment corner can achieve the most dramatic drop in the peak pressure and heat flux at the reattachment point. The research is guidable to the aerodynamic design of local configuration of hypersonic vehicles.}
+}
+
+@article{nabapuremach,
+author = {Deepak Nabapure and Ram Chandra Murthy K},
+title ={DSMC simulation of rarefied gas flow over a 2D backward-facing step in the transitional flow regime: Effect of Mach number and wall temperature},
+journal = {Proceedings of the Institution of Mechanical Engineers, Part G: Journal of Aerospace Engineering},
+volume = {235},
+number = {7},
+pages = {825-856},
+year = {2021},
+doi = {10.1177/0954410020959872},
+URL = {https://doi.org/10.1177/0954410020959872},
+eprint = {https://doi.org/10.1177/0954410020959872},
+abstract = { Rarefied gas flow over a backward-facing step (BFS) is often encountered in separating flows prevalent in aerodynamic flows, engine flows, condensers, space vehicles, heat transfer systems, and microflows. Direct Simulation Monte Carlo (DSMC) is a powerful tool to investigate such flows. The purpose of this research is to assess the impact of Mach number and wall temperature on the flow and surface properties in the transitional flow regime. The Mach numbers considered are 5, 10, 25, 30, and the ratio of the temperature of the wall to that of freestream considered are 1, 2, 4, 8. The Reynolds number for the cases studied is 8.6, 17.2, 43, and 51.7, respectively. Typically the flow properties near the wall are found to increase with both Mach number and wall temperature owing to compressibility and viscous dissipation effects. The variation in flow properties is more sensitive to Mach number than the wall temperature. The surface properties are found to decrease with Mach number and increase with wall temperature. Moreover, in the wake of the step, the vortex’s recirculation length is reasonably independent of both free stream Mach number and wall temperature, whereas it decreases with Knudsen number. }
+}
+
+@InProceedings{nabapuremachfor,
+author="Nabapure, Deepak
+and Singh, Arjun
+and Ram Chandra Murthy, K.",
+editor="Palanisamy, Muthukumar
+and Ramalingam, Velraj
+and Sivalingam, Murugan",
+title="Effect of Mach Number on the Rarefied Gas Flow Over a Forward-Facing Step",
+booktitle="Theoretical, Computational, and Experimental Solutions to Thermo-Fluid Systems",
+year="2021",
+publisher="Springer Singapore",
+address="Singapore",
+pages="451--459",
+abstract="The present research analyses the rarefied flow over a forward-facing step (FFS) in the transition regime using the direct simulation Monte-Carlo (DSMC) method. The flow properties such as velocity, pressure and temperature are investigated for the subsonic and hypersonic flow having Mach number 0.5 and 25, respectively. The validation results are compared against the literature, and a good match is found. The results indicate that compressibility and shear effects influence the flow properties. The pressure and temperature contour shows a higher magnitude near the wall and lower magnitude away, which is in contrast to the velocity contour. These results contribute to the broader understanding of the rarefied flow physics.",
+isbn="978-981-33-4165-4"
+}
+
+@article{nabapureexp,
+    author = {Nabapure, Deepak and Murthy, K. Ram Chandra},
+    title = "{DSMC simulation of rarefied gas flow over a forward-facing step: Effect of expansion ratio}",
+    journal = {AIP Conference Proceedings},
+    volume = {2316},
+    number = {1},
+    year = {2021},
+    month = {02},
+    abstract = "{Numerical simulations have been carried out to explore the expansion ratio effects on the hypersonic rarefied flow past a forward-facing step using the Direct Simulation Monte Carlo (DSMC) method. An open source solver named dsmcFoam has been used for this purpose. The solver has been validated with well-established results from the literature and good agreement is found among them. Simulations have been carried out for expansion ratios (ER) of 2,4,6,8,10 in the transition regime. The different flow field properties have been studied. The profiles have found to be influenced by the compressibility and rarefaction effects. Limiting case of ER=8 and above has no influence on the flow field properties.}",
+    issn = {0094-243X},
+    doi = {10.1063/5.0036427},
+    url = {https://doi.org/10.1063/5.0036427},
+    note = {030032},
+    eprint = {https://pubs.aip.org/aip/acp/article-pdf/doi/10.1063/5.0036427/13880649/030032\_1\_online.pdf},
+}
+
+@article{nabapurekn,
+title = {DSMC investigation of rarefied gas flow over a 2D forward-facing step: Effect of Knudsen number},
+journal = {Acta Astronautica},
+volume = {178},
+pages = {89-109},
+year = {2021},
+issn = {0094-5765},
+doi = {https://doi.org/10.1016/j.actaastro.2020.08.030},
+url = {https://www.sciencedirect.com/science/article/pii/S0094576520305270},
+author = {Deepak Nabapure and Ram Chandra Murthy K.},
+keywords = {DSMC, Forward-facing step, Knudsen number, Rarefied gas flows},
+abstract = {A Forward-Facing Step (FFS) can be approximated as a simplified geometry for modeling the irregularities around space vehicles, the flow around which is often rarefied. These irregularities lead to flow separation, circulation, and re-attachment. This study aims to examine one of the fundamental surface irregularities that can have a significant effect on the design of space vehicles. In this article, Direct Simulation Monte Carlo (DSMC), an effective method for studying rarefied flows, is used to investigate the role of rarefaction on the non-reacting hypersonic rarefied gas flow over a forward-facing step. A comprehensive analysis of the effects of Knudsen number on the on flow-field properties, i.e., velocity, pressure, temperature, density, and surface properties, i.e., pressure coefficient, skin friction coefficient, and heat transfer coefficient is performed. The selected Knudsen number range from 0.05 to 21.33, covering the various rarefaction regimes. The Mach number of the free-stream flow employed was 25. The sections in the vicinity and downstream of the step are examined in-depth, describing the predominant nonequilibrium aspects. The normalized flow properties increased with Knudsen number and are primarily affected by the interplay of compressibility and viscous dissipation effects. Flow recirculation occurred in the slip and transition regime, whereas it was absent in the free-molecular regime; moreover, the recirculation lengths decreased with rarefaction. The surface properties were found to increase with Knudsen number with peak magnitudes located on the upstream and frontal face of the step.}
+}
+
+@inbook{riabov,
+author = {Vladimir V. Riabov},
+title = {Numerical and Experimental Simulation Techniques in Hypersonic Low-Density Aerothermodynamics},
+booktitle = {23rd AIAA International Space Planes and Hypersonic Systems and Technologies Conference},
+chapter = {},
+pages = {},
+doi = {10.2514/6.2020-2416},
+URL = {https://arc.aiaa.org/doi/abs/10.2514/6.2020-2416},
+eprint = {https://arc.aiaa.org/doi/pdf/10.2514/6.2020-2416}
+}
+@article{spartavalid,
+    author = {Klothakis, A. G. and Nikolos, I. K. and Koehler, T. P. and Gallis, M. A. and Plimpton, S. J.},
+    title = "{Validation simulations of the DSMC code SPARTA}",
+    journal = {AIP Conference Proceedings},
+    volume = {1786},
+    number = {1},
+    year = {2016},
+    month = {11},
+    abstract = "{The Direct Simulation Monte Carlo (DSMC) method has been used for over 50 years to simulate rarified gas flows for a wide range of applications where continuum assumptions fail. Extensive efforts to validate and verify the DSMC method are essential to establishing confidence in the technique and to promoting its broader application. Here, validation results for two cases are presented using a recently developed, open-source DSMC code called SPARTA.}",
+    issn = {0094-243X},
+    doi = {10.1063/1.4967566},
+    url = {https://doi.org/10.1063/1.4967566},
+    note = {050016},
+    eprint = {https://pubs.aip.org/aip/acp/article-pdf/doi/10.1063/1.4967566/13729333/050016\_1\_online.pdf},
+}
+
+@article{pallahrini,
+title = {Benchmark numerical simulations of rarefied non-reacting gas flows using an open-source DSMC code},
+journal = {Computers \& Fluids},
+volume = {120},
+pages = {140-157},
+year = {2015},
+issn = {0045-7930},
+doi = {https://doi.org/10.1016/j.compfluid.2015.07.021},
+url = {https://www.sciencedirect.com/science/article/pii/S0045793015002558},
+author = {Rodrigo C. Palharini and Craig White and Thomas J. Scanlon and Richard E. Brown and Matthew K. Borg and Jason M. Reese},
+keywords = {DSMC, Benchmark, Open-source, Rarefied gas dynamics, Aerodynamics, Low/high speed flows},
+abstract = {Validation and verification represent an important element in the development of a computational code. The aim is establish both confidence in the algorithm and its suitability for the intended purpose. In this paper, a direct simulation Monte Carlo solver, called dsmcFoam, is carefully investigated for its ability to solve low and high speed non-reacting gas flows in simple and complex geometries. The test cases are: flow over sharp and truncated flat plates, the Mars Pathfinder probe, a micro-channel with heated internal steps, and a simple micro-channel. For all the cases investigated, dsmcFoam demonstrates very good agreement with experimental and numerical data available in the literature.}
+}
+
+@article{cubecd,
+doi = {10.1088/1757-899X/896/1/012127},
+url = {https://dx.doi.org/10.1088/1757-899X/896/1/012127},
+year = {2020},
+month = {jul},
+publisher = {IOP Publishing},
+volume = {896},
+number = {1},
+pages = {012127},
+author = {Sergei I Gerasimov and Vladimir I Erofeev and Vasily A Kikeev and Vadim A Kuzmin and Alexei N Zharov and Ilya A Novikov},
+title = {Experimental and computational research of supersonic and hypersonic flow around cube shaped fragments in the air},
+journal = {IOP Conference Series: Materials Science and Engineering},
+abstract = {A numerical and experimental research of supersonic and hypersonic air flow round cubic fragments, differently oriented relative to the direction of the incoming flow was carried out. The results of visualizing supersonic airflow round cubic fragments are rendered by two methods: a theoretical one, based on a mathematical model by way of numerical solution of the Reynolds - averaged complete Navier-Stokes equations, and an experimental one using shadowgraphy.}
+}
+
+@article{rees2,
+	author={Thomas W. Rees and Tom B. Fisher and Paul J. K. Bruce and Jim A. Merrifield and Mark K. Quinn},
+	year={2020},
+	title={Experimental characterization of the hypersonic flow around a cuboid},
+	journal={Experiments in fluids},
+	volume={61},
+	number={7},
+	isbn={0723-4864},
+	url={https://link.springer.com/article/10.1007/s00348-020-02975-x},
+	doi={10.1007/s00348-020-02975-x}
+}
+
+@article{zhonghua,
+    author = {Li, Zhonghua and Dang, Leining and Yang, Yanguang and Li, Zhihui},
+    title = "{Study of hybrid NS-DSMC simulation method with chemical non-equilibrium for transitional hypersonic flow}",
+    journal = {AIP Conference Proceedings},
+    volume = {2027},
+    number = {1},
+    year = {2018},
+    month = {11},
+    abstract = "{An N-S/DSMC hybrid algorithm with chemical non-equilibrium is present by developing the MPC technique using current CFD and DSMC method based on same chemical reaction model. DSMC region is selected automatically according to CFD results in this hybrid scheme based on local Knudson numbers. A sub-relax technique is developed to deal with information exchange between CFD and DSMC to restrain the effect of statistical fluctuation from DSMC to CFD. This extends the application range of the DSMC and CFD method, and provides a way to predict the chemical non-equilibrium characteristics in near-continuum transitional flow regime. Hypersonic flow with chemical non-equilibrium around a 2D cylinder is simulated by the present N-S/DSMC hybrid method. Comparison shows that hybrid results are good agreement with full DSMC results in flow structure, non-equilibrium phenomenon, surface parameters and aerodynamics characteristics. This verifies the efficient adaptability and reliability of the present N-S/DSMC hybrid algorithm in simulating hypersonic flows for the transitional flow regime.}",
+    issn = {0094-243X},
+    doi = {10.1063/1.5065269},
+    url = {https://doi.org/10.1063/1.5065269},
+    note = {030175},
+    eprint = {https://pubs.aip.org/aip/acp/article-pdf/doi/10.1063/1.5065269/14172693/030175\_1\_online.pdf},
+}
+
+@article{malaikannan,
+language = {English},
+copyright = {Copyright 2018, The Institution of Engineering and Technology},
+title = {A novel efficient hybrid DSMC-dynamic collision limiter algorithm for multiscale transitional flows},
+journal = {International Journal for Numerical Methods in Fluids},
+journal = {Int. J. Numer. Methods Fluids (USA)},
+author = {Malaikannan, G. and Kumar, R. and Chinnappan, A.K.},
+volume = { 86},
+number = { 9},
+year = {2018/03/30},
+pages = {565 - 81},
+issn = {0271-2091},
+address = {USA},
+abstract = {A new 2D parallel multispecies polyatomic particle-based hybrid flow solver is developed by coupling the Direct Simulation Monte Carlo (DSMC) method with a novel Dynamic Collision Limiter (DCL) approach to solve multiscale transitional flows. The hybrid DSMC-DCL solver can solve nonequilibrium multiscale flows with length scales ranging from continuum to rarefied. The DCL method, developed in this work, dynamically assigns different number of collisions in cells, which is based on the local value of K-S parameter such that the number of collisions per time step is limited in near-equilibrium flow regions. Present hybrid solver uses the Kolmogorov-Smirnov statistical test as the continuum breakdown parameter, based on which, the solution domain is decomposed into near-equilibrium and nonequilibrium flow regions. Direct Simulation Monte Carlo is used where nonequilibrium flow regions are encountered, while the DCL method is used where flow regions are found to be in near-equilibrium state. In this work, we have studied hypersonic flow of nitrogen over a blunt body with an aerospike and supersonic flow of argon through a micronozzle. The results obtained by the hybrid DSMC-DCL solver are compared and shown to agree well with the experimental data and with those obtained from DSMC, with significant savings in the computational cost.},
+keywords = {argon;confined flow;flow instability;flow simulation;hypersonic flow;Knudsen flow;microfluidics;Monte Carlo methods;nonequilibrium flow;nozzles;rarefied fluid dynamics;supersonic flow;},
+note = {novel efficient hybrid DSMC-dynamic collision limiter algorithm;multiscale transitional flows;Direct Simulation Monte Carlo method;hybrid DSMC-DCL solver;DCL method;near-equilibrium flow regions;continuum breakdown parameter;nonequilibrium flow regions;2D parallel multispecies polyatomic particle-based hybrid flow solver;Dynamic Collision Limiter approach;nonequilibrium multiscale flows;K-S parameter;Kolmogorov-Smirnov statistical test;hypersonic flow;blunt body;aerospike;supersonic flow;rarefied flow;},
+URL = {http://dx.doi.org/10.1002/fld.4466},
+} 
+
+@article{spherecd,
+author = {Loth, Eric and Tyler Daspit, John and Jeong, Michael and Nagata, Takayuki and Nonomura, Taku},
+title = {Supersonic and Hypersonic Drag Coefficients for a Sphere},
+journal = {AIAA Journal},
+volume = {59},
+number = {8},
+pages = {3261-3274},
+year = {2021},
+doi = {10.2514/1.J060153},
+URL = {https://doi.org/10.2514/1.J060153},
+eprint = {https://doi.org/10.2514/1.J060153},
+abstract = { A comprehensive review of all relevant experimental data was completed, including recent data for the drag coefficient for a sphere in supersonic and hypersonic flows. The primary characterization parameter included the relative Mach, Knudsen, and Reynolds numbers based on the relative velocity, the sphere diameter, and other parameters. This review of data showed that the previously proposed nexus at a Reynolds number below 45 was not strictly met, and it instead included a weak transonic bump, which was identified numerically for the first time with the present simulations. New continuum-gas and rarefied-gas simulations were conducted and were combined with the expanded experimental dataset to improve the quantitative description of the drag coefficient in this region. The results indicated that a quasi nexus bridges the rarefaction regime and the compressible flow regimes. The comprehensive dataset was then used to develop new empirical models for the drag coefficient that showed improved robustness and accuracy as compared to previous models. These models are limited by the critical Reynolds number associated with boundary-layer transition on the sphere, which was found to increase substantially with the sphere Mach number. }
+}

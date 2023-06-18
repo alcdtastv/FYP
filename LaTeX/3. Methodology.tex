@@ -1,4 +1,6 @@
 \section{Methodology}
+\label{section:3}
+
 \subsection{Direct Simulation Monte Carlo method}
 The Direct Simulation Monte Carlo method  was initially introduced by Graeme A. Bird in the 1960s, and has become with time the de facto standard for rarefied flow simulations. When it was first developed, this method represented a radical departure from the traditional approaches employing a mathematical description of the flow, to such an extent that many questioned the validity of its results. It was eventually proven though, that, for time step and cell size tending to zero, the DSMC method converges to a solution of the Boltzmann equation \cite{bird}.
 
@@ -7,16 +9,16 @@ This method models the gas as a large collection of simulated particles, each re
 As the name in itself implies, this method is statistical at heart. Its results are in fact based on averaging the microscopic quantities of each of the molecules over a high number of time steps and over the grid cell size, in order to obtain global aerodynamic quantities. \cite{bird, themontecarlo}. This process will be discussed more in depth in \autoref{subsection:sampling}
 
 \subsubsection{Particle description}
-As mentioned previously, DSMC employs a particle description of the flow. The number of simulated particles is usually significantly lower than the real number of particles in the problem. This is due to the immense computational expense that simulating all of the particles in the real domain would require \cite{natodsmc}. To provide some perspective, it is useful to consider one of the most rarefied simulations conducted as part of this thesis. In this scenario, with a Knudsen number of 10 and a density of \qty{2e-7}{\kg\per\meter^3} (a mere 0.00001\% of the air density at sea level), more than \qty{3.6e18}{} molecules per cubic meter would have been required if a one-to-one correlation between the real and simulated molecules were to be maintained. The ratio between real and simulated molecules is expressed by $f_{num}$.
+As mentioned previously, DSMC employs a particle description of the flow. The number of simulated particles is usually significantly lower than the real number of particles in the problem. This is due to the immense computational cost that simulating all of the particles in the real domain would require \cite{natodsmc}. To provide some perspective, it is useful to consider one of the most rarefied simulations conducted as part of this thesis. In this scenario, with a Knudsen number of 10 and a density of \qty{2e-7}{\kg\per\meter^3} (a mere 0.00001\% of the air density at sea level), more than \qty{3.6e18}{} molecules per cubic meter would have been required if a one-to-one correlation between the real and simulated molecules were to be maintained. The ratio between real and simulated molecules is expressed by $f_{num}$.
 
-At the beginning of each simulation, a reference set of simulation particles is created. The microscopic properties (position and velocity) of each of the molecules in this set are chosen such that the bulk velocity and the global temperature of the flow correspond to the ones specified by the user, and that the number of simulated particles in the domain is equal to $\frac{n_{real}}{f_{num}}$. The velocity of the particles is usually selected at random through a Maxwell-Boltzmann distribution \cite{natodsmc}.
+At the beginning of each simulation, a reference set of simulation particles is created. The microscopic properties (position and velocity) of each molecule in this set are chosen such that the bulk velocity and the global temperature of the flow correspond to the ones specified by the user, and that the number of simulated particles in the domain is equal to $\frac{n_{real}}{f_{num}}$. The individual velocity of the particles is usually selected from a Maxwell-Boltzmann distribution \cite{natodsmc}.
 
-The simulated particles are not identical to the real particles: to correctly simulate the behaviour of the system the radius of each simulated particle must be proportional to the number of real particles that it represents, and is thus calculated such that \autoref{eq:radius} is valid. This approach also ensures the correct number of collisions in the flow \cite{dsmcnotes}.
+The simulated particles are not identical to the real particles: to correctly simulate the behaviour of the system the radius of each simulated particle must be proportional to the number of real particles that it represents, and is thus calculated such that \autoref{eq:radius} (in which $n$ is the number of particles, and $\sigma$ is the particle radius) is valid. This approach also ensures the correct number of collisions in the flow \cite{dsmcnotes}.
 \begin{equation}
     n_{real}\, \sigma_{real} = n_{sim}\, \sigma_{sim}
     \label{eq:radius}
 \end{equation}
-No indication of how the mass of each of the simulated particles is determined has been found in literature. However, based on how the SPARTA DSMC code calculates surface quantities, it is the author's understanding that the mass of the simulated particles is equal to the mass of the real particles.
+No indication of how the mass of each of the simulated particles is determined has been found in literature. However, based on how the SPARTA DSMC code calculates surface quantities, it is the our understanding that the mass of the simulated particles is equal to the mass of the real particles.
 
 \subsubsection{Mesh}
 The DSMC method discretises the domain into a collection of mesh elements. This might seem counter intuitive, as the method operates on a particle-based description of the flow, which does not require the solution of any partial differential equation.
@@ -24,11 +26,11 @@ The DSMC method discretises the domain into a collection of mesh elements. This 
 The mesh discretisation serves two main purposes: 
 
 \begin{itemize}
-    \item It allows to reduce the computational expense: employing pure Newtonian mechanics for all the molecules within the simulation domain would be too computationally expensive \cite{themontecarlo}. Thus DSMC only computes collision of randomly selected molecules within the same cell, disregarding collisions between molecules belonging to different cells, significantly cutting the computational burden. This topic will be discussed in more detail in \autoref{subsection:collision}
+    \item It allows to reduce the computational cost: employing pure Newtonian mechanics for all the molecules within the simulation domain would be too computationally expensive \cite{themontecarlo}. Thus DSMC only computes collision of randomly selected molecules within the same cell, disregarding collisions between molecules belonging to different cells, significantly cutting the computational burden. This topic will be further discussed in more detail in \autoref{subsection:collision}
     \item It allows the calculation of global quantities such as temperature, bulk flow velocity or density by averaging the microscopic properties of the simulated particles over the cell volume. More details about this process can be found in section \autoref{subsection:sampling}.
 \end{itemize}
 
-As an added benefit, discretising the domain allows to parallelise the code by assigning chunks of cells of each processor, thus lowering the time required for the simulation.
+As an added benefit, discretising the domain allows parallelisation of the code by assigning chunks of cells of each processor, thus lowering the time required for the simulation.
 
 \subsubsection{Boundary conditions}
 One of the main advantages of the DSMC method is the ease of computing and assigning boundary conditions. Generally speaking, five boundary conditions exist \cite{natodsmc, spartadoc}
@@ -37,7 +39,7 @@ One of the main advantages of the DSMC method is the ease of computing and assig
     \item Inflow boundary: this type of boundary acts as a reservoir with gas properties specified in the simulation file. Particles are emitted into the simulation based on a surface generator (where the number of particles to be injected is determined from the number flux and their velocity from a surface distribution) or a volume generator (where a layer of "ghost cells" is created and filled with particles that satisfy the reference state properties, and the ones that do not cross the boundary after the particle move are discarded) \cite{natodsmc}. An inflow boundary also acts as an outflow boundary for particles that cross it from the simulation domain.
     \item Periodic boundary: the particles that cross this boundary exit the simulation and re-enter it at the opposite boundary (e.g., if the top of the simulation is a periodic boundary, particles will re-enter the simulation from the bottom) with unchanged velocity.
     \item Specular boundary: particles that cross this boundary reflect off of it with inverted normal velocity.
-    \item Surface/thermal wall: particle that cross a surface are scattered based on the chosen surface-particle interaction model. More details will be given in \autoref{subsection:partsurf}.
+    \item Surface/thermal wall: particles that cross a surface are scattered based on the chosen surface-particle interaction model. More details will be given in \autoref{subsection:partsurf}.
 \end{itemize}
 
 \subsubsection{Particle motion}
@@ -52,23 +54,23 @@ Particles propagate through the simulation domain based on ordinary Newtonian me
 \label{subsection:collision}
 As previously mentioned, particle collisions are handled by DSMC with a probabilistic rather than deterministic approach. While it may seem intuitive to compute the trajectories of all the particles within a cell and check for collisions for each pair, or focus on nearby particles, DSMC takes a different approach.
 
-In DSMC collision pairs are chosen at random, without taking into consideration their position or proximity to one another. A collision probability $P$, independent of the relative position of the molecules, is then computed, and the collision is said to happen with probability P \cite{bird, themontecarlo, natodsmc}.
+In DSMC collision pairs are chosen at random, without taking into consideration their position or proximity to one another. A collision probability $P$ is then computed, and the collision is said to happen with probability P \cite{bird, themontecarlo, natodsmc}.
 
 The sequence of steps taken is the following:
 \begin{enumerate}
-    \item The number of candidate particles is computed based on \autoref{eq:candidate} \cite{themontecarlo}, where $N_{\mathrm{c}}$ is the number of particles in the cell, $\sigma$ is the collisional radius of the simulated molecules, $v_{\mathrm{r}, \max }$ is the maximum relative velocity and $V_{\mathrm{c}}$ is the cell volume.
+    \item The number of candidate particles $N_{\mathrm{cand}}$ is computed based on \autoref{eq:candidate} \cite{themontecarlo}, where $N_{\mathrm{c}}$ is the number of particles in the cell, $\sigma$ is the collisional radius of the simulated molecules, $v_{\mathrm{r}, \max }$ is the maximum relative velocity and $V_{\mathrm{c}}$ is the cell volume.
     \begin{equation}
         N_{\mathrm{cand}}=\frac{N_{\mathrm{c}}^2\, \pi\, \sigma^2\, v_{\mathrm{r}, \max }\, f_{num}\, \Delta t}{2 V_{\mathrm{c}}}
         \label{eq:candidate}
     \end{equation}
     \item A pair of potential collision partners is randomly selected among the particles in the cell, and their collisional probability $P$ is computed. The collisional probability formula varies based on the chosen interaction model \cite{natodsmc}, but is usually proportional to both the collisional radius of the molecules and their relative velocity \cite{bird}.
     \item The pair is accepted as collision partners if their collision probability is higher than a random variable sampled from a uniform deviate in (0, 1) \cite{themontecarlo}.
-    \item If the pair is accepted as collision partners, the new velocities of the molecules are computed and the algorithm moves to the next pair. Otherwise the algorithm moves to the next pair without modifying the velocities.
-    \item The algorithm is repeated until the number of candidate particles is reached.
+    \item If the pair is accepted, the velocities of the molecules are updated and the algorithm moves to the next pair. Otherwise the algorithm moves to the next pair without modifying the velocities.
+    \item The algorithm is repeated until the desired number of candidate particles is reached.
 \end{enumerate}
 
 \subsubsection{Intermolecular collision mechanics and models}
-When particle collide with each other, their velocities are computed based on the chosen intermolecular collision model. All of the intermolecular collision models encountered in literature are partly based on momentum conservation, as in \autoref{eq:momcons}. The extra equations are derived based on the specific collision model
+When particles collide with each other, their velocities are computed based on the chosen intermolecular collision model. All of the intermolecular collision models encountered in literature are partly based on momentum conservation, as in \autoref{eq:momcons}. The extra equations are derived based on the specific collision model
 \begin{equation}
     m_{1,i}\; v_{1,i} + m_{2,i}\; v_{2,i} = m_{1,f}\; v_{1,f} + m_{2,f}\; v_{2,f}
     \label{eq:momcons}
@@ -76,7 +78,7 @@ When particle collide with each other, their velocities are computed based on th
 The three most commonly employed models are:
 \begin{itemize}
     \item Hard sphere model: this model treats molecules as impenetrable hard spheres with fixed collision diameter. Velocities are computed based on elastic collision theory \cite{collisionmodels}.
-    \item Variable hard sphere (VHS) model: this model is based on the hard sphere model, but it expands it by considering a variable collision diameter, based on the particle relative velocity. Post collision velocities are again determined based on elastic collision theory. This method resulted in scattering which was in poor agreement with the experimental results, which led to the development of the variable soft sphere model \cite{collisionmodels}.
+    \item Variable hard sphere (VHS) model: this model is based on the hard sphere model, but it expands it by considering a variable collision diameter, based on the particles relative velocity. Post collision velocities are again determined based on elastic collision theory. This method resulted in scattering which was in poor agreement with the experimental results, which led to the development of the variable soft sphere model \cite{collisionmodels}.
     \item Variable soft sphere (VSS) model: this model introduces an extra parameter $\alpha$, which governs the post collision scattering of the particles (which becomes anisotropic) \cite{collisionmodels}.
 \end{itemize}
 
@@ -92,7 +94,7 @@ As for particle-particle interactions, many models exist for particle-surface in
 
 Many solvers allow to employ both the models at the same time through an accommodation coefficient, which determines what fraction of the collisions will be of each type.
 
-More information about more advanced models can be found in \cite{spartadoc}.
+Information about more complex models can be found in \cite{spartadoc}.
 
 \subsubsection{Sampling and calculation of global quantities}
 \label{subsection:sampling}
@@ -117,13 +119,13 @@ A similar procedure can be employed to get surface-specific values, such as the 
 Given the statistical noise inherent of a Monte Carlo method, the macroscopic quantities are also usually averaged over a number of time steps.
 
 \subsubsection{Iterative procedure}
-When a Direct Simulation Monte Carlo code is run, the following procedure is executed:
+When a Direct Simulation Monte Carlo code is run, the following procedure, illustrated in \autoref{fig:dsmcflowchart}, is executed:
 \begin{enumerate}
     \item A random seed for the simulation is set. This set will be used to randomly generate the set of initial particles and the particles emitted by the inflow boundaries.
-    \item The simulation domain is created,the mesh and the reference set of initial particles are generated, and the internal geometry is loaded.
+    \item The simulation domain is created, the mesh and the reference set of initial particles are generated, and the internal geometry is loaded.
     \item The number of iterations $n$ and the initial time $t$ are set to zero.
     \item The particles are propagated through the simulation domain as described in \autoref{subsection:motion}.
-    \item Collisions between particles and boundaries/surfaces is checked. New velocities of the particles are computed and assigned. Particles are inserted or removed into the domain.
+    \item Collisions between particles and boundaries/surfaces is checked. New velocities of the particles are computed and assigned. Particles are inserted into or removed from the domain.
     \item Particles are indexed, meaning their position is used to determine to which cell they belong to, to subsequently compute inter-particle collisions.
     \item Inter-particle collisions are computed and new velocities assigned.
     \item $n$ is incremented by 1, $t$ by $\Delta t$.
@@ -131,9 +133,7 @@ When a Direct Simulation Monte Carlo code is run, the following procedure is exe
     \item If the final time has been reached, the results are printed and the simulation is stopped, otherwise the process goes back to step 4.
 \end{enumerate}
 
-\autoref{fig:dsmcflowchart} shows the steps outlined above in a flowchart.
-
-\begin{figure}[ht]
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth]{../Images/3. Methodology/dsmcflowchart.pdf}
     \caption{Flowchart of DSMC method loop. Adapted from \cite{dsmcnotes}.}
@@ -144,54 +144,55 @@ When a Direct Simulation Monte Carlo code is run, the following procedure is exe
 \label{subsection:bestpractices}
 Literature indicates some general good practices for running DSMC algorithms. Three main parameters have to be taken into consideration for the successful execution of a simulation \cite{purdue}: the mesh size, which has to be kept below one third of the mean free path \cite{purdue, fnum1}, the time step, which has to be kept below one third of the smaller between the mean collision time and the mean transition time \cite{purdue}, and the number of simulated particles, which has to be kept to around 20 per cell \cite{purdue}. 
 
-It has to be pointed out that the latter requirement has been proven significantly less relevant than the former two \cite{fnum1, fnum2}. However, this requirement will still be applied in the simulations, for reasons discussed in \autoref{subsection:fnum}.
+It is necessary to point out that the latter requirement has been proven to be significantly less relevant than the former two \cite{fnum1, fnum2}. However, this requirement will still be applied in the simulations, for reasons discussed in \autoref{subsection:fnum}.
 
 \subsection{Choice of software package}
 Three pieces of software were considered for running the simulations: dsmcFoam, a Direct Simulation Monte Carlo implementation part of the more general OpenFoam CFD package \cite{openfoam}, its expansion from the rarefied hypersonics team at Strathclyde university dsmcFoam+ \cite{dsmcfoam+}, and the SPARTA DSMC code from Sandia National Laboratories \cite{sparta}.
 
-dsmcFoam was employed for several weeks and numerous test simulations were run on it. However, a decision was made to replace it, primarily due to its intricate operation and the lack of readily available documentation or a supportive user community. It was initially decided to replace it with dsmcFoam+, but some incompatibilities with the departmental HPC server prevented its use. The SPARTA DSMC package was thus chosen.
+dsmcFoam was employed for several weeks and numerous test simulations were run on it. However, it was decided to replace it, primarily due to its intricate operation and lack of readily available documentation or supportive user community. It was initially replaced it with dsmcFoam+, but some incompatibilities with the departmental HPC server prevented its use. The SPARTA DSMC package was thus chosen.
 
 \subsection{Simulation design}
-The simulations were designed around simple shapes, that presented the generic features  and flow structure of the aeroshells in \cite{hathoraero1} while ignoring irrelevant details such as the nose radius or the cone half angle. The geometries also had to highlight the local rarefaction effects with respect to the global flow. The best geometry for this purpose was deemed to be a square with rounded corners, since it presented two edges, representative of the tip of the aeroshell, and a significant wake at the back. The rounded corner was employed to have an extra parameter to control local Knudsen number through. During the course of the research it was deemed useful to show how the flow features changed when taking the corner radius to extremes. The geometries of a circle (which corresponds to the radius being equal to the side of the square) and a perfect squares (radius of zero) were also simulated.
+The simulations were designed around simple shapes, that presented the generic features  and flow structure of the aeroshells in \cite{hathoraero1} while ignoring irrelevant details such as the nose radius or the cone half angle. The geometries also had to highlight the local rarefaction effects with respect to the global flow. The best geometry for this purpose was deemed to be a square with rounded corners, since it presented two edges, representative of the tip of the aeroshell, and a significant wake at the back. The rounded corner was employed to allow the control of local Knudsen number through an extra parameter. During the course of the research it was deemed useful to show how the flow features changed when taking the corner radius to extremes. The geometries of a circle (which corresponds to the radius being equal to the side of the square) and a perfect squares (radius of zero) were also simulated.
 
-Four sets of simulations were run: constant edge radius with varying global Knudsen number, constant knudsen number with varying edge radius, constant local Knudsen number (both edge radius and global Knudsen number vary to achieve a constant Knudsen number at the edge), varying angle of attack.
+Four sets of simulations were run: constant edge radius with varying global Knudsen number, constant knudsen number with varying edge radius, constant local Knudsen number (both edge radius and global Knudsen number vary to achieve a constant Knudsen number at the corner), varying angle of attack.
 
 \subsubsection{Common parameters}
 Before designing the individual sets of simulations, certain parameters, applicable universally across all simulations, were determined:
 \begin{itemize}
-    \item Mach number, which was set to 5 to replicate the one seen in \cite{rees}.
-    \item Cube size, which as the mach number was set to \qty{3}{\cm} to replicate \cite{rees}.
+    \item Mach number, set to 5 to replicate the one seen in \cite{rees}.
+    \item Cube size, which, as the mach number, was set to \qty{3}{\cm} to replicate \cite{rees}.
     \item Simulation domain size, initially set to a square with side of \qty{0.2}{\m}, then increased to \qty{0.3}{\m} to encase the entire bow shock around the cube.
     \item Molecular mixture, chosen to be 22.3\% of $O_{2}$ and 77.7\% of $N_{2}$ by molecule count, to accurately represent the standard composition of air.
     \item Mixture temperature, chosen to be \qty{273}{\kelvin}.
+    \item Intermolecular collision model, chosen to be Variable Soft Sphere because of its high acuracy and relative ease of use.
     \item Surface collision accommodation parameter, set to 0.85 in accordance with \cite{accomod}
-    \item Surface temperature of the geometry set to \qty{300}{\kelvin}.
+    \item Surface temperature of the geometry, set to \qty{300}{\kelvin}.
 \end{itemize}
 
-Some of these parameters, such as the geometry and mixture temperature, along with others that will be mentioned subsequently, were selected arbitrarily as they did not directly influence the simulation outcomes. Their values were primarily used to generate the targeted non-dimensional numbers. For instance, to achieve a specific Reynolds number, parameters like viscosity, velocity, and size were arbitrarily fixed, and then the density was computed accordingly.
+Some of these parameters, such as the geometry and mixture temperature, along with others that will be mentioned subsequently, were selected arbitrarily as they did not directly influence the outcome of the simulations. Their values were primarily used to generate the targeted non-dimensional numbers. For instance, to achieve a specific Reynolds number, parameters like viscosity, velocity, and size were arbitrarily fixed, and then the density was computed accordingly.
 
-All of the simulations were run as 2D simulations, 
+All of the simulations were run as 2D simulations, as the computational cost of DSMC would have required several months of runtime for 3D simulations.
 
-Two more parameters were needed to fully characterise the simulation: number density and real to simulated particles ratio. Their derivation will be explored in the following section.
+Two more parameters were required to fully characterise the simulation: number density and real to simulated particles ratio. Their derivation will be explored in the following section.
 
-\subsubsection{Varying Knudsen number}
-For the varying Knudsen number case, it was initially planned to run a set of simulations which spanned the slip flow regime (between Knudsen numbers of 0.01 and 10). For completeness of results, two more simulations were added towards the end of the project, at Knudsen numbers of 0.001 and 100.  The chosen values can be seen in \autoref{tab:kn}. 
+\subsubsection{Varying global Knudsen number}
+For the varying Knudsen number set of simulations, it was initially planned to run a set of simulations which spanned the slip flow regime (between Knudsen numbers equal to 0.01 and 10). For completeness of results, two more simulations were added towards the end of the project, at Knudsen numbers of 0.001 and 100.  The chosen values can be seen in \autoref{tab:kn}. 
 To compute the number density for each of the test cases, the following procedure was used:
 \begin{enumerate}
     \item Determined Reynolds numbers as $\frac{M}{Kn}$.
     \item Calculated flow velocity from $M = \frac{u}{a}$ with $a = \sqrt{\gamma R T}$.
     \item Calculated flow viscosity from Sutherland's law.
-    \item Calculated density from $Re = \frac{\rho\, u\, d}{\mu}$.
-    \item Calculated the average molecule mass by computing the weighted average of the masses of $O_{2}$ and $N_{2}$, as in \autoref{eq:waverage}.
+    \item Calculated density from $Re = \frac{\rho\, u\, d}{\mu}$, with $d$ equal to the side length of the square.
+    \item Calculated the average molecule mass by computing the weighted average of the masses of c and $N_{2}$, as in \autoref{eq:waverage}.
     \item Calculated the required number density by dividing the density by the average molecule mass.
 \end{enumerate}
 \begin{equation}
     m_{mean} = 0.223\; m_{O_{2}} + 0.777\; m_{N_{2}}
     \label{eq:waverage}
 \end{equation}
-Having determined the number density, the ratio between real and simulated particles had to be computed. To do this, the number of real particles in the simulation domain was calculated by multiplying the density ratio by the domain volume. This value was then divided by the total number of simulated particles in the domain (computed as the product between number of cells and simulated particles per cell). The results of this calculation are shown in \autoref{tab:kn}. The process through which  the number of molecules per cell and the number of cells was determined will be discussed in a following section.
+Having determined the number density, the ratio between real and simulated particles had to be computed. To do this, the number of real particles in the simulation domain was calculated by multiplying the density ratio by the domain volume. This value was then divided by the total number of simulated particles in the domain (computed as the product between number of cells and simulated particles per cell). The results of this calculation are shown in \autoref{tab:kn}. The process through which the optimal number of molecules per cell and the number of cells was determined will be discussed in a following section.
 
-\begin{table}[h]
+\begin{table}
     \centering
     \caption{Varying Knudsen number simulations flow properties}
     \begin{tabular}{c|cccc}
@@ -212,60 +213,42 @@ Having determined the number density, the ratio between real and simulated parti
     \label{tab:kn}
 \end{table}
 
-The varying $Kn$ simulations were run for both the circle and rounded square geometries. The square edge radius was set to \qty{1e-4}{\m}. This value was chosen as .
+The varying $Kn$ simulations were run for both the circle and rounded square geometries. The square edge radius was set to \qty{1e-4}{\m}. This value was chosen in accordance with the cube corner radius seen in \cite{rees}.
 
 \subsubsection{Varying edge radius}
+The varying edge radius set of simulations was run to accomplish two objectives: illustrate the variation in flow structure as the edge radius increased from zero (representing a perfect square) to the length of the square side (forming a circle), and investigate the effect of corner radius in the change in Stanton number at the square edge. The full details of the simulations can be seen in \autoref{tab:radius}.
 
-Two sets of simulations were run for the varying edge radius case. The first set employed a Knudsen Number of 0.01 with the objective of illustrating the variation in flow structure as the edge radius increased from zero (representing a perfect square) to the length of the square side (forming a circle)
-The second set of simulations was run with a $Kn$ of 0.001 and was aimed at investigating the effect of the edge radius in the change in Stanton number at the edge. The full details of the simulations can be seen respectively in \autoref{tab:radius1} and \autoref{tab:radius2}.
-
-\subsubsection{Varying angle of attack}
-The varying angle of attack simulations were conducted to investigate the variation in heat transfer at the front and back of the cube with angle of attack, as this was investigated quite extensively in literature \cite{pallahrini, spartavalid}. The simulations were run at $\pm 5$, $\pm 10$, $\pm 30$ and \qty{45}{\deg} at a Knudsen number of 0.01.
-\begin{table}[ht]
+\begin{table}
     \centering
-    \caption{Parameters of first set of varying edge radius simulations.}
+    \caption{Parameters of varying edge radius simulations.}
     \begin{tabular}{c|cc}
         \toprule
         Simulation & Knudsen Number & Edge radius (\si{\m})\\
         \midrule
         1 & 0.01 & \num{0}\\
-        2 & 0.01 & \num{1e-4}\\
-        3 & 0.01 & \num{2e-4}\\
-        4 & 0.01 & \num{5e-4}\\
-        5 & 0.01 & \num{1e-3}\\
-        6 & 0.01 & \num{2e-3}\\
-        7 & 0.01 & \num{5e-3}\\
-        8 & 0.01 & \num{1.5e-2}\\
+        2 & 0.01 & \num{2e-6}\\
+        3 & 0.01 & \num{5e-6}\\
+        4 & 0.01 & \num{1e-5}\\
+        5 & 0.01 & \num{2e-5}\\
+        6 & 0.01 & \num{5e-5}\\
+        7 & 0.01 & \num{1e-4}\\
+        8 & 0.01 & \num{2e-4}\\
+        9 & 0.01 & \num{5e-4}\\
+        10 & 0.01 & \num{1e-3}\\
+        11 & 0.01 & \num{2e-3}\\
+        12 & 0.01 & \num{5e-3}\\
+        13 & 0.01 & \num{1.5e-2}\\
         \bottomrule
     \end{tabular}
-    \label{tab:radius1}
-\end{table}
-\begin{table}[ht]
-    \centering
-    \caption{Parameters of second set of varying edge radius simulations.}
-    \begin{tabular}{c|cc}
-        \toprule
-        Simulation & Knudsen Number & Edge radius (\si{\m})\\
-        \midrule
-        1 & 0.001 & \num{0}\\
-        2 & 0.001 & \num{2e-6}\\
-        3 & 0.001 & \num{5e-6}\\
-        4 & 0.001 & \num{1e-5}\\
-        5 & 0.001 & \num{2e-5}\\
-        6 & 0.001 & \num{5e-5}\\
-        7 & 0.001 & \num{1e-4}\\
-        8 & 0.001 & \num{1e-4}\\
-        9 & 0.001 & \num{2e-4}\\
-        10 & 0.001 & \num{5e-4}\\
-        11 & 0.001 & \num{1e-3}\\
-        \bottomrule
-    \end{tabular}
-    \label{tab:radius2}
+    \label{tab:radius}
 \end{table}
 
+\subsubsection{Varying angle of attack}
+The varying angle of attack simulations were conducted to investigate the variation in heat transfer at the front and back of the cube with angle of attack, as this was investigated quite extensively in literature \cite{pallahrini, spartavalid}. The simulations were run at $\pm 5$, $\pm 10$, $\pm 30$ and \qty{45}{\deg} with Knudsen number of 0.01.
+
 \subsubsection{Constant local Knudsen number}
-The constant local Knudsen number simulation were run while attempting to keep the local Knudsen number at the corner of the cube constant. To achieve this, a base $Kn$ and edge radius were set for the first simulation. For subsequent simulations, the Knudsen number was multiplied by a specific factor, while the edge radius was divided by the +same factor. This was done with the assumption that the local mean free path number would be directly proportional to the local one. The full set of parameters can be seen in \autoref{tab:local}
-\begin{table}[ht]
+The constant local Knudsen number simulations were run while attempting to keep the local Knudsen number at the corner of the cube constant. To achieve this, a base $Kn$ and edge radius were set for the first simulation. For subsequent simulations, the Knudsen number was multiplied by a specific factor, while the edge radius was divided by the same factor. This was done under the assumption that the local mean free path number would be directly proportional to the local one. The full set of parameters is shown in \autoref{tab:local}
+\begin{table}
     \centering
     \caption{Properties of constant local Knudsen number simulations.}
     \begin{tabular}{c|cc}
@@ -284,14 +267,15 @@ The constant local Knudsen number simulation were run while attempting to keep t
     \label{tab:local}
 \end{table}
 
-\subsection{Convergence studies and validation of results}
+\subsection{Convergence studies}
 Having designed the simulations, a set of convergence studies was run to investigate the effect of cell size, number of simulated particles and sampling time, and to determine the necessary time for the simulation itself to converge.
 
 \subsubsection{Mesh convergence study}
-To determine the optimal mesh size, a set of 8 simulations was run at a Knudsen number of 0.01. All of the simulations were run with a rounded cube with edge radius of \qty{1e-4}{\m} In the first seven simulations the number of mesh elements was manually increased from 100 to 3000 per domain dimension. The last simulation was run with a dynamically refining mesh, which started from 1000 mesh elements per dimension and dynamically split the cells containing more than 80 particles into four. The simulations were run for a total time of \qty{6e-4}{\s} and the data was sampled for the last \qty{1e-4}{\s} of the simulation. The time steps were varied in order to maintain them below a third of the mean cell transition time. The full set of simulation parameters is shown in \autoref{tab:meshconv}, together with the runtime of each of the simulations.
-\begin{table}[ht]
+\label{subsection:meshconv}
+To determine the optimal mesh size, a set of 8 simulations was run at a Knudsen number of 0.01. All of the simulations were run with a rounded cube with edge radius of \qty{1e-4}{\m}. In the first seven simulations, the number of mesh elements was manually increased from 100 to 3000 per domain dimension. The last simulation was run with a dynamically refining mesh, which started from 1000 mesh elements per dimension and dynamically split the cells containing more than 80 particles into four. The simulations were run for a total time of \qty{6e-4}{\s} and the data was sampled for the last \qty{1e-4}{\s} of the simulation. The time steps were varied in order to maintain them below a third of the mean cell transition time. The full set of simulation parameters is shown in \autoref{tab:meshconv}, together with the runtime of each of the simulations.
+\begin{table}
     \centering
-    \caption{Properties of constant local Knudsen number simulations.}
+    \caption{Properties of mesh convergence study simulations.}
     \begin{tabular}{c|cccc}
         \toprule
         Simulation & Number of cells per dimension & Cell size (\si{\m}) & Time step (\si{\s}) & Runtime (\si{\s})\\
@@ -309,7 +293,7 @@ To determine the optimal mesh size, a set of 8 simulations was run at a Knudsen 
     \label{tab:meshconv}
 \end{table}
 
-\autoref{fig:meshsec} shows the distribution of heat transfer rate around the square (more information about the x coordinate can be found in \autoref{subsection:postprocessing}) for different mesh sizes. It is possible to note that as the number of elements increases, the stagnation point heat transfer rate converges to a value of about \qty{1e+4}{\watt\per\m^2}.
+\autoref{fig:meshsec} shows the distribution of heat transfer rate around the square (more information about the $x$ coordinate can be found in \autoref{subsection:postprocessing}) for different mesh sizes. It is possible to note that as the number of elements increases, the stagnation point heat transfer rate converges to a value of about \qty{1e+4}{\watt\per\m^2}.
 
 \begin{figure}
     \centering
@@ -318,21 +302,9 @@ To determine the optimal mesh size, a set of 8 simulations was run at a Knudsen 
     \label{fig:meshsec}
 \end{figure}
 
-\autoref{fig:meshstag}, \autoref{fig:meshpeak} and \autoref{fig:meshcd} respectively show how the stagnation point heat transfer, the peak heat transfer and the drag coefficient varied when increasing the mesh resolution. In these plots the dynamic mesh was experiment was represented through a mesh size of 4825 elements, obtained by taking the square root of the total number of mesh elements at the end of the simulation.
+\autoref{fig:meshstag}, \autoref{fig:meshpeak} and \autoref{fig:meshcd} respectively show how the stagnation point heat transfer, the peak heat transfer and the drag coefficient vary as the mesh resolution is increased. In these plots the dynamic mesh simulation was represented through a mesh size of 4825 elements, obtained by taking the square root of the total number of mesh elements at the end of the simulation.
 
 As it is possible to see from these graphs, stagnation point heating and drag coefficient showed a lower sensibility to mesh size than peak heating, only showing respectively 1.5\% and 0.2\% of difference between the value obtained with 1000 elements and 3000 elements. Peak heating showed a slower convergence trend, only achieving full convergence past 2000 mesh elements.
-
-Overall, all of the parameters analysed were deemed to be converged past 2000 cells per dimension. This mesh was thus validated against the best practices discussed in \autoref{subsection:bestpractices}. To do so, \autoref{eq:meanfree} was used to calculate the mean free path for the simulation with the highest density. At the time of the mesh convergence study, the planned simulation with the highest density was the one with $Kn$ equal to 0.01, with a corresponding number density of \qty{1.727e-4}{\kg\per\m^3}. This value 
-
-\begin{equation}
-    \lambda=\frac{1}{\sqrt{2} \pi \mathrm{d}^2 \mathrm{n}}
-\end{equation}
-
-and the mean collision time were calculated for the simulation with the highest density. 
-
-
-This mesh size was thus selected for all of the subsequent simulations. 
-
 
 \begin{figure}
     \centering
@@ -379,27 +351,72 @@ This mesh size was thus selected for all of the subsequent simulations.
     \label{fig:meshcd}
 \end{figure}
 
-\subsubsection{Number of simulated particles convergence study}
+Overall, all of the parameters analysed were deemed to have converged past 2000 cells per dimension. This mesh was thus validated against the best practices discussed in \autoref{subsection:bestpractices}.
 
-aba
+To do so, the mean free path was calculated to be equal to \qty{3.9e-4}{\m} using \autoref{eq:meanfree}, with the number density $n$ of the lowest Knudsen number simulation planned at the time (equal to 0.01), along with the weighted average of the molecular diameters of $O_2$ and $N_2$. This value was then divided by three and juxtaposed to the cell size of the mesh. Although not smaller, the cell size was merely 15\% bigger than the required size.
+\begin{equation}
+    \lambda=\frac{1}{\sqrt{2} \pi \mathrm{d}^2 \mathrm{n}}
+    \label{eq:meanfree}
+\end{equation}
+The mean collision time was obtained by dividing the mean free path by the mean molecular velocity, calculated through \autoref{eq:moleculespeed}. This was then divided by three, resulting in a value of \qty{2.6e-7}{\s}, significantly larger than the time step for the mesh size analysed.
+\begin{equation}
+    v =\sqrt{\frac{3\, k_b\, T}{m}}
+    \label{eq:moleculespeed}
+\end{equation}
+Given the only marginal discrepancy between the actual and recommended cell sizes, and the good results of the mesh convergence, this mesh size was deemed to be sufficient and selected for all of the subsequent simulations.
+
+It is necessary to point out that since the mesh convergence was conducted before the decision of including a simulation at a Knudsen number of 0.001, the grid might not be fully converged for that case. This will be discussed in \autoref{subsection:kn}.
+
+\subsubsection{Number of simulated particles convergence study}
+\label{subsection:fnum}
+To determine the appropriate number of simulated particles, a set of 7 simulations was run at a Knudsen number of 0.01 and mesh size of 300 elements per dimension, with increasing number of particles from 1 to 100 per cell. The reduced mesh size was chosen due to the prohibitive computational cost that running the previously selected mesh would have required.
+
+\autoref{fig:fnumsec} shows that the effect of moving from 1 to 100 particles per cell was only a reduction in the statistical noise, due to the higher number of lighter molecules hitting the surface. This was also confirmed when looking at the velocity contour plots, shown in \autoref{fig:fnum} for the 1 and 100 particles per cell cases.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{Images/3. Methodology/Fnum convergence/fnumconv.pdf}
+    \includegraphics[width=0.6\textwidth]{Images/3. Methodology/Fnum convergence/fnumconv.pdf}
     \caption{Heat transfer vs square equivalent coordinate for varying number of particles.}
     \label{fig:fnumsec}
 \end{figure}
 
-\subsubsection{Sampling time convergence study}
+Given the results of this analysis and what was found in literature \cite{fnum1, fnum2}, the particle number was set to 25, as it was thought to be a good balance between computational cost and statistical noise.
 
-\begin{figure}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/3. Methodology/Fnum convergence/1.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/3. Methodology/Fnum convergence/100.png}
+    \end{subfigure}
+    \caption{Velocity contours for 1 (left) and 100 (right) particles per cell.} 
+    \label{fig:fnum}
+\end{figure}
+
+
+\subsubsection{Simulation convergence study}
+Having selected the mesh size and the number of particles, the first simulations were run. To determine at what point they reached steady state, the number of simulated particles present at a given point in the simulation was adopted as a criterion. As it is possible to see from \autoref{fig:simconv}, the number of particles started plateauing after around 10000 time steps, and could be considered converged after 20000 time steps, corresponding to \qty{4e-4}{\s}. This was thus chosen as the point of convergence of the simulations.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Images/3. Methodology/Simulation convergence/simconv.pdf}
+    \caption{Total number of particles vs number of time steps.}
+    \label{fig:simconv}
+\end{figure}
+
+\subsubsection{Sampling time convergence study}
+In order to identify optimal sampling time for the macroscopic quantities, the simulation with a Knudsen number of 0.01 from the varying Knudsen number set was run for 30,000 steps. Data was sampled for the  final 10,000, 5,000, 1,000, 500, and 100 time steps. The results are shown in \autoref{fig:avesec}. To quantify the point of diminishing returns, a line of best fit was drawn through the relatively flat section between x = 0.5 and x = 1.5. The residuals of this best fine were thus computed, and plotted against the number of time steps. As visible from \autoref{fig:averesid}, past the 5000 sampling time steps, the residuals stopped decreasing. This was thus chosen as the sampling time for all of the subsequent simulations.
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.7\textwidth]{Images/3. Methodology/Timestep average convergence/avesec.pdf}
     \caption{Heat transfer vs square equivalent coordinate for varying sampling time.}
     \label{fig:avesec}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \begin{subfigure}{0.49\textwidth}
         \centering
@@ -410,15 +427,70 @@ aba
         \centering
         \includegraphics[width=\textwidth]{Images/3. Methodology/Timestep average convergence/resinvts.pdf}
     \end{subfigure}
-    \caption{Drag coefficient vs number of cells per dimension (left) and cell size (right).}
+    \caption{Best fit residuals vs number of time steps (left) and inverse of number of time steps (right).}
     \label{fig:averesid}
 \end{figure}
 
-\subsubsection{Simulation convergence study}
 
-\begin{figure}
+\subsection{Data post processing}
+\label{subsection:postprocessing}
+\subsubsection{Equivalent square coordinate}
+
+Having run the simulation, the heat transfer rate values obtained had to be plotted against a coordinate system suitable for all of the various geometries. An equivalent square coordinate was thus devised, which can be computed through the following procedure:
+
+\begin{enumerate}
+    \item Inscribe the geometry in a perfect square
+    \item Trace a line from the centre of the perfect square to the chosen point on the geometry and extend it until it intercepts the perfect square.
+    \item Measure the distance from the midpoint of the left face of the perfect square to the intercepted point, tracing along the side of the perfect square.
+    \item Divide the measured distance by the side length of the perfect square to normalise it.
+\end{enumerate}
+An illustration of the procedure is shown in \autoref{fig:sec}. N.B. The stagnation point of the body is located at 0.
+\begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{Images/3. Methodology/Simulation convergence/simconv.pdf}
-    \caption{Heat transfer vs square equivalent coordinate for varying sampling time.}
-    \label{fig:simconv}
+    \includegraphics[width=0.5\textwidth]{Images/3. Methodology/esc.pdf}
+    \caption{Equivalent square coordinate illustration.}
+    \label{fig:sec}
 \end{figure}
+
+\subsubsection{Stanton number}
+The modified Stanton number $\mathrm{C}_{\mathrm{H}}$ was computed from the heat transfer values through \autoref{eq:stanton} \cite{hathoraero2, rees}, where $q_w$ is the convective heat transfer at the wall, $\rho_\infty$ and $u_\infty$ are density and velocity in the freestream, $H_0$ is the total enthalpy and $h_w$ is the static enthalpy at the wall.
+\begin{equation}
+    \mathrm{C}_{\mathrm{H}}=\frac{\mathrm{q}_{\mathrm{w}}}{\rho_{\infty} \mathrm{u}_{\infty}\left(\mathrm{H}_0-\mathrm{h}_{\mathrm{w}}\right)}
+    \label{eq:stanton}
+\end{equation}
+
+\subsubsection{Local Knudsen number}
+The local Knudsen number at the square's corner was determined as the ratio between the corner radius and the local mean free path of the flow. To do so, the mean free path was calculated through \autoref{eq:meanfree2}, in which $D_{\text {ref }}$ denotes the reference diameter of the real particles, $T_{\text {ref}}$ represents the reference temperature, $\omega$ is the viscosity temperature-dependence for the species, and $T$ and $n$ are respectively the temperature and number density values. \cite{spartadoc}.
+\begin{equation}
+    \lambda=\left\{\sqrt{2} \pi D_{\text {ref }}^2 n\left(T_{\text {ref }} / T\right)^{\omega-1 / 2}\right\}^{-1}
+    \label{eq:meanfree2}
+\end{equation}
+It should be noted that this equation is designed for a single species flow, and not the bi-species one implemented in the experiments. Hence, the values used for reference diameter, temperature and viscosity-temperature dependence were determined by computing the weighted average of the values for $O_2$ and $N_2$. The individual values for the two elements were also examined, showing a discrepancy in mean free path values of about 30\% between the two. Although this divergence might seem substantial, given the order of magnitude differences in Knudsen number it was not deemed significant enough to warrant concern.
+The number density and temperature values were instead obtained from SPARTA, by sampling the values at the mesh element closest to the corner.
+
+\subsubsection{Stagnation point Stanton number}
+Due to the significant statistical noise present near the stagnation point of the cube, an average over the five datapoints above and the five datapoints below the stagnation point was employed to calculate the Stanton number ratios.
+
+\subsection{Validation of results}
+To validate the results of the simulations, drag coefficient values were calculated for both the rounded square and sphere. Experimental evidence at Mach 5 was found for cubes at an unknown Knudsen number in pure continuum regime \cite{cubecd}, and for spheres at a Knudsen number of 0.1 \cite{spherecd}. The drag coefficient values were thus computed at $Kn = 0.001$ for the square (lowest available $Kn$) and $Kn = 0.1$ for the sphere. It has to be pointed out that since mesh convergence was not proven for the square simulation with $Kn = 0.001$, its drag coefficient value might not be perfectly accurate. Given the low dependence of $C_D$ values on the grid size observed in \ref{subsection:meshconv}, this value was still considered representative enough.As it is possible to see from \autoref{tab:cd}, good agreement was found between the experimental and simulation values.
+
+\begin{table}[h]
+    \centering
+    \caption{Comparison of experimental and simulation drag coefficients for a cube and a sphere.}
+    \begin{tabular}{c|cc}
+        \toprule
+        & Experiment & Simulation\\
+        \midrule
+        Cube & 1.67 & 1.7282\\
+        Sphere & 1.63 & 1.6175\\
+        \bottomrule
+    \end{tabular}
+    \label{tab:cd}
+\end{table}
+
+Stanton number values for a sphere were also compared. The sphere simulations showed a stagnation point Stanton number of around 0.7 for a Knudsen number of 1, while literature \cite{riabov} showed an experimental value of around 0.8. These discrepancies could be caused by the choice of collision model or the diffusion accommodation coefficient. Data for the stagnation point Stanton number on a cube at comparable Knudsen numbers to those available from simulation was not found in literature.
+
+Overall, given the good agreement between the drag coefficient values and the sphere Stanton number, the validation was considered successful and the simulations were judged sufficiently accurate.
+
+
+
